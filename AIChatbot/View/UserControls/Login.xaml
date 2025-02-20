@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="AIChatbot.View.UserControls.Login"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AIChatbot.View.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="250" d:DesignWidth="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <local:UserTextBox Grid.Row="0" Width="250" Height="40" Placeholder="Username"/>
+        <local:PasswordBox Grid.Row="1" Width="250" Height="40" Placeholder="Password"/>
+        <local:Button Grid.Row="2" Width="250" Height="40" BtnContent="Login" Cursor="Hand" MouseLeftButtonDown="On_BtnLogin_Click"/>
+        <local:Button Grid.Row="3" Width="250" Height="40" BtnContent="Register" MouseLeftButtonDown="On_BtnRegister_Click"/>
+    </Grid>
+</UserControl>
