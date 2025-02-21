@@ -18,7 +18,7 @@ namespace AIChatbot
     /// </summary>
     public partial class MainWindow : Window
     {
-        public UserBusiness userBusiness = new UserBusiness();
+        public UserBusiness userBusiness = new();
 
         public MainWindow()
         {

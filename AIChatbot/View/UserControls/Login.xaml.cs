@@ -28,6 +28,14 @@ namespace AIChatbot.View.UserControls
         public event Action<User> LoginCompleted;
         public event Action<User> RegistrationCompleted;
 
+        private bool registerMode = false;
+
+        public bool RegisterMode
+        {
+            get { return registerMode; }
+            set { registerMode = value; }
+        }
+
         public Login()
         {
             InitializeComponent();
@@ -35,41 +43,79 @@ namespace AIChatbot.View.UserControls
 
         private void On_BtnLogin_Click(bool obj)
         {
-            byte[] data = Encoding.ASCII.GetBytes(txtPassword.txtInput.Password);
-            using (var sha256 = SHA256.Create())
+            if (!RegisterMode)
             {
-                byte[] digest = sha256.ComputeHash(data);
-                string hash = Encoding.ASCII.GetString(digest);
-
-                User user = new User
+                byte[] data = Encoding.ASCII.GetBytes(txtPassword.txtInput.Password);
+                using (var sha256 = SHA256.Create())
                 {
-                    Username = txtUsername.txtInput.Text,
-                    Password = hash
-                };
+                    byte[] digest = sha256.ComputeHash(data);
+                    string hash = Encoding.ASCII.GetString(digest);
 
-                if (userBusiness.Find(user))
-                {
-                    LoginCompleted(user);
+                    User user = new User
+                    {
+                        Username = txtUsername.txtInput.Text,
+                        Password = hash
+                    };
+
+                    if (userBusiness.Find(user))
+                    {
+                        LoginCompleted(user);
+                    }
                 }
             }
-            
+
+            else
+            {
+                byte[] data = Encoding.ASCII.GetBytes(txtPassword.txtInput.Password);
+                using (var sha256 = SHA256.Create())
+                {
+                    byte[] digest = sha256.ComputeHash(data);
+                    string hash = Encoding.ASCII.GetString(digest);
+
+                    User user = new()
+                    {
+                        Username = txtUsername.txtInput.Text,
+                        Password = hash
+                    };
+
+                    if (userBusiness.FindByUsername(user.Username))
+                    {
+                        MessageBox.Show("User already exists");
+                        SetFieldsByMode(!RegisterMode);
+                        return;
+                    }
+
+                    RegistrationCompleted(user);
+                }
+            }
         }
 
         private void On_BtnRegister_Click(bool obj)
         {
-            byte[] data = Encoding.ASCII.GetBytes(txtPassword.txtInput.Password);
-            using (var sha256 = SHA256.Create())
+            SetFieldsByMode(RegisterMode);
+            RegisterMode = !RegisterMode;
+        }
+
+        public void SetFieldsByMode(bool mode)
+        {
+            if (mode)
             {
-                byte[] digest = sha256.ComputeHash(data);
-                string hash = Encoding.ASCII.GetString(digest);
+                txtUsername.txtInput.Text = "";
+                txtUsername.tbPlaceholder.Text = "Username";
+                txtPassword.txtInput.Password = "";
+                txtPassword.tbPlaceholder.Text = "Password";
+                btnLogin.btnClickable.Content = "Login";
+                btnRegister.btnClickable.Content = "Register";
+            }
 
-                User user = new()
-                {
-                    Username = txtUsername.txtInput.Text,
-                    Password = hash
-                };
-
-                RegistrationCompleted(user);
+            else
+            {
+                txtUsername.txtInput.Text = "";
+                txtUsername.tbPlaceholder.Text = "Username";
+                txtPassword.txtInput.Password = "";
+                txtPassword.tbPlaceholder.Text = "Password";
+                btnLogin.btnClickable.Content = "Register";
+                btnRegister.btnClickable.Content = "Go back";
             }
         }
     }

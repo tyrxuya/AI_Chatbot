@@ -14,7 +14,7 @@ namespace AIChatbot.Business
 
         public List<User> GetAll()
         {
-            using (dbContext = new ChatbotDbContext())
+            using (dbContext = new())
             {
                 return dbContext.Users.ToList();
             }
@@ -22,7 +22,7 @@ namespace AIChatbot.Business
 
         public void Add(User user)
         {
-            using (dbContext = new ChatbotDbContext())
+            using (dbContext = new())
             {
                 if (dbContext.Users.Find(user.Id) != null) 
                 {
@@ -36,10 +36,20 @@ namespace AIChatbot.Business
 
         public bool Find(User user)
         {
-            using (dbContext = new ChatbotDbContext())
+            using (dbContext = new())
             {
                 return dbContext.Users
                     .Where(u => u.Username == user.Username && u.Password == user.Password)
+                    .Any();
+            }
+        }
+
+        public bool FindByUsername(string username)
+        {
+            using (dbContext = new())
+            {
+                return dbContext.Users
+                    .Where (u => u.Username == username)
                     .Any();
             }
         }
