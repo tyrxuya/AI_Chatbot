@@ -17,7 +17,7 @@ namespace AIChatbot.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseNpgsql("Host=localhost; Port=5432; Database=Chatbot; Username=postgres; Password=1234");
+            optionsBuilder.UseNpgsql(APIConstants.CONNECTION_STRING);
         }
 
         public DbSet<User> Users { get; set; }

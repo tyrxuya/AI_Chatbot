@@ -7,7 +7,13 @@
         xmlns:userControls="clr-namespace:AIChatbot.View.UserControls"
         mc:Ignorable="d"
         FontFamily="Consolas"
-        Title="ByteTalk - AI Chatbot" Height="500" Width="700" MinWidth="700" MinHeight="500" MaxWidth="1000" MaxHeight="800">
+        Title="ByteTalk - AI Chatbot" 
+        Height="500" 
+        Width="700" 
+        MinWidth="700" 
+        MinHeight="500" 
+        MaxWidth="1000" 
+        MaxHeight="800">
 
     <Window.Background>
         <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
@@ -18,7 +24,7 @@
     
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="15*" />
+            <RowDefinition Height="15*"/>
             <RowDefinition Height="40*"/>
             <RowDefinition Height="5*"/>
         </Grid.RowDefinitions>

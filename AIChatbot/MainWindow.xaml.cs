@@ -10,6 +10,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using AIChatbot.Business;
 using AIChatbot.Data.Models;
+using AIChatbot.View;
 
 namespace AIChatbot
 {
@@ -27,7 +28,8 @@ namespace AIChatbot
 
         private void Login_LoginCompleted(Data.Models.User obj)
         {
-            MessageBox.Show("Successfully logged in!");
+            new Chat(obj).Show();
+            this.Close();
         }
 
         private void login_RegistrationCompleted(Data.Models.User obj)

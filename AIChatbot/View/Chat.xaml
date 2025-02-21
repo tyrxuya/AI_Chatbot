@@ -1,0 +1,39 @@
+﻿<Window x:Class="AIChatbot.View.Chat"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AIChatbot.View"
+        xmlns:userControls="clr-namespace:AIChatbot.View.UserControls"
+        mc:Ignorable="d"
+        Title="Chatroom" Height="720" Width="1080" MinWidth="1080" MinHeight="720">
+
+    <Window.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="#1E1E1E" Offset="0"/>
+            <GradientStop Color="#2D2D2D" Offset="1"/>
+        </LinearGradientBrush>
+    </Window.Background>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="85*"/>
+            <RowDefinition Height="15*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="15*"/>
+            <ColumnDefinition Width="70*"/>
+            <ColumnDefinition Width="15*"/>
+        </Grid.ColumnDefinitions>
+
+        <userControls:UserTextBox x:Name="txtPrompt" Grid.Row="1" Grid.Column="1" Height="50" Padding="25, 0" Placeholder="Type here..."/>
+        <userControls:Button x:Name="btnSend" Grid.Row="1" Grid.Column="2" Cursor="Hand" Width="50" Height="50" BtnContent="Send" HorizontalAlignment="Left" OnClick="btnSend_OnClick"/>
+        <userControls:Button x:Name="btnLogout" Grid.Row="0" Grid.Column="0" Cursor="Hand" Height="50" MinWidth="125" MaxWidth="150" Padding="8" BtnContent="Log out" VerticalAlignment="Top" HorizontalAlignment="Left" OnClick="btnLogout_OnClick"/>
+        <ScrollViewer x:Name="svBar" CanContentScroll="False" Grid.Row="0" Grid.Column="1" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden">
+            <StackPanel x:Name="spChat">
+                
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Window>
