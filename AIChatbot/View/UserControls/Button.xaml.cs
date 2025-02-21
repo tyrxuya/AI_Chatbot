@@ -20,6 +20,7 @@ namespace AIChatbot.View.UserControls
     /// </summary>
     public partial class Button : UserControl
     {
+        public event Action<bool> OnClick;
         public Button()
         {
             InitializeComponent();
@@ -35,6 +36,11 @@ namespace AIChatbot.View.UserControls
                 btnContent = value;
                 btnClickable.Content = btnContent;
             }
+        }
+
+        private void btnClickable_Click(object sender, RoutedEventArgs e)
+        {
+            OnClick(true);
         }
     }
 }

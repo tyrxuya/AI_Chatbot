@@ -8,15 +8,16 @@
              d:DesignHeight="250" d:DesignWidth="300">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="24*"/>
+            <RowDefinition Height="24*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="24*"/>
+            <RowDefinition Height="24*"/>
         </Grid.RowDefinitions>
 
-        <local:UserTextBox Grid.Row="0" Width="250" Height="40" Placeholder="Username"/>
-        <local:PasswordBox Grid.Row="1" Width="250" Height="40" Placeholder="Password"/>
-        <local:Button Grid.Row="2" Width="250" Height="40" BtnContent="Login" Cursor="Hand" MouseLeftButtonDown="On_BtnLogin_Click"/>
-        <local:Button Grid.Row="3" Width="250" Height="40" BtnContent="Register" MouseLeftButtonDown="On_BtnRegister_Click"/>
+        <local:UserTextBox x:Name="txtUsername" Grid.Row="0" Width="250" Height="40" Placeholder="Username"/>
+        <local:PasswordBox x:Name="txtPassword" Grid.Row="1" Width="250" Height="40" Placeholder="Password"/>
+        <local:Button Grid.Row="3" Width="250" Height="40" BtnContent="Login" Cursor="Hand" OnClick="On_BtnLogin_Click"/>
+        <local:Button Grid.Row="4" Width="250" Height="40" BtnContent="Register" Cursor="Hand" OnClick="On_BtnRegister_Click"/>
     </Grid>
 </UserControl>

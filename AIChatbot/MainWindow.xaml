@@ -7,7 +7,15 @@
         xmlns:userControls="clr-namespace:AIChatbot.View.UserControls"
         mc:Ignorable="d"
         FontFamily="Consolas"
-        Title="MainWindow" Height="500" Width="700">
+        Title="ByteTalk - AI Chatbot" Height="500" Width="700" MinWidth="700" MinHeight="500" MaxWidth="1000" MaxHeight="800">
+
+    <Window.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="#1E1E1E" Offset="0"/>
+            <GradientStop Color="#2D2D2D" Offset="1"/>
+        </LinearGradientBrush>
+    </Window.Background>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="15*" />
@@ -21,10 +29,11 @@
             <ColumnDefinition Width="20*" />
         </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.Row="0" Grid.Column="1" Name="tbTitle" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="32">
-            Cool AI Project
+        <TextBlock Grid.Row="0" Grid.Column="1" Name="tbTitle" VerticalAlignment="Center" 
+                   HorizontalAlignment="Center" FontSize="32" Foreground="White">
+            ByteTalk - AI Chatbot
         </TextBlock>
 
-        <userControls:Login Grid.Row="1" Grid.Column=" 1" />
+        <userControls:Login x:Name="login" Grid.Row="1" Grid.Column=" 1" LoginCompleted="Login_LoginCompleted" RegistrationCompleted="login_RegistrationCompleted"/>
     </Grid>
 </Window>
