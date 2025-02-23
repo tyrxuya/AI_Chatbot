@@ -7,9 +7,14 @@
              mc:Ignorable="d"
              FontFamily="Consolas"
              d:DesignHeight="100" d:DesignWidth="600">
+
+    <UserControl.Resources>
+        <ResourceDictionary Source="../Styles/Styles.xaml"/>
+    </UserControl.Resources>
+    
     <Grid>
-        <Border Margin="0, 10, 0, 10" Background="#FF989898" CornerRadius="25" Height="auto" Padding="15" HorizontalAlignment="Left">
-            <TextBlock x:Name="txtResponse" Text="{Binding BubbleContent}" Foreground="White" TextWrapping="Wrap" HorizontalAlignment="Stretch" MaxWidth="600" VerticalAlignment="Center" FontSize="20"/>
+        <Border Style="{StaticResource ResponseBubbleStyle}">
+            <TextBlock x:Name="txtResponse" Text="{Binding BubbleContent}" Style="{StaticResource BubbleTextStyle}"/>
         </Border>
     </Grid>
 </UserControl>

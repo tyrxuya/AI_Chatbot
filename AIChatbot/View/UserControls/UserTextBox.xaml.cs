@@ -30,8 +30,8 @@ namespace AIChatbot.View.UserControls
         public string Placeholder
         {
             get { return placeholder; }
-            set 
-            { 
+            set
+            {
                 placeholder = value;
                 tbPlaceholder.Text = placeholder;
             }

@@ -35,6 +35,8 @@ namespace AIChatbot
         private void login_RegistrationCompleted(Data.Models.User obj)
         {
             userBusiness.Add(obj);
+            new Chat(obj).Show();
+            this.Close();
         }
     }
 }

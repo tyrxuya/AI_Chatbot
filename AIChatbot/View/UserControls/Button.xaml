@@ -6,7 +6,12 @@
              xmlns:local="clr-namespace:AIChatbot.View.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="40" d:DesignWidth="250">
-    <Grid>
+
+    <UserControl.Resources>
+        <ResourceDictionary Source="../Styles/Styles.xaml"/>
+    </UserControl.Resources>
+    
+    <!--<Grid>
 
         <Button x:Name="btnClickable" Content="{Binding BtnContent}" Background="#073928" Foreground="White" BorderThickness="2" FontSize="16" Click="btnClickable_Click">
             <Button.Effect>
@@ -29,5 +34,7 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-    </Grid>
+    </Grid>-->
+
+    <Button x:Name="btnClickable" Style="{StaticResource ButtonStyle}" Content="{Binding BtnContent}" Click="btnClickable_Click"/>
 </UserControl>

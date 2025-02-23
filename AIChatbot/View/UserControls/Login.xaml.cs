@@ -61,6 +61,12 @@ namespace AIChatbot.View.UserControls
                     {
                         LoginCompleted(user);
                     }
+                    else
+                    {
+                        SetFieldsByMode(!RegisterMode);
+                        grid.RowDefinitions[2].Height = new(10, GridUnitType.Star);
+                        txtResult.Text = "Wrong username/password!";
+                    }
                 }
             }
 
@@ -80,8 +86,9 @@ namespace AIChatbot.View.UserControls
 
                     if (userBusiness.FindByUsername(user.Username))
                     {
-                        MessageBox.Show("User already exists");
                         SetFieldsByMode(!RegisterMode);
+                        grid.RowDefinitions[2].Height = new(10, GridUnitType.Star);
+                        txtResult.Text = "User with such username already exists!";
                         return;
                     }
 
@@ -106,6 +113,8 @@ namespace AIChatbot.View.UserControls
                 txtPassword.tbPlaceholder.Text = "Password";
                 btnLogin.btnClickable.Content = "Login";
                 btnRegister.btnClickable.Content = "Register";
+                txtResult.Text = "";
+                grid.RowDefinitions[2].Height = new(4, GridUnitType.Star);
             }
 
             else
@@ -116,6 +125,8 @@ namespace AIChatbot.View.UserControls
                 txtPassword.tbPlaceholder.Text = "Password";
                 btnLogin.btnClickable.Content = "Register";
                 btnRegister.btnClickable.Content = "Go back";
+                txtResult.Text = "";
+                grid.RowDefinitions[2].Height = new(4, GridUnitType.Star);
             }
         }
     }

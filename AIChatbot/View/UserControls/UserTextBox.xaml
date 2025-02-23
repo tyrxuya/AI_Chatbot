@@ -6,12 +6,15 @@
              xmlns:local="clr-namespace:AIChatbot.View.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="40" d:DesignWidth="250">
+
+    <UserControl.Resources>
+        <ResourceDictionary Source="../Styles/Styles.xaml"/>
+    </UserControl.Resources>
+
     <Grid>
-        <Border CornerRadius="10" BorderThickness="1" BorderBrush="LightGray">
-            <TextBox x:Name="txtInput" VerticalContentAlignment="Center" 
-         FontSize="16" FontWeight="Light" Background="Transparent" CaretBrush="White" BorderBrush="Transparent" BorderThickness="0" Foreground="LightGray" Padding="8" TextChanged="txtInput_TextChanged"/>
+        <Border Style="{StaticResource TextBoxBorderStyle}">
+            <TextBox x:Name="txtInput" Style="{StaticResource TextBoxStyle}" TextChanged="txtInput_TextChanged"/>
         </Border>
-        <TextBlock x:Name="tbPlaceholder" Text="{Binding Placeholder}" FontSize="16" FontWeight="Light" 
-   Foreground="LightGray" VerticalAlignment="Center" Margin="10,0,0,0" Panel.ZIndex="-1"/>
+        <TextBlock x:Name="tbPlaceholder" Text="{Binding Placeholder}" Style="{StaticResource TextBoxPlaceholderStyle}"/>
     </Grid>
 </UserControl>

@@ -15,6 +15,10 @@
         MaxWidth="1000" 
         MaxHeight="800">
 
+    <Window.Resources>
+        <ResourceDictionary Source="View/Styles/Styles.xaml"/>
+    </Window.Resources>
+
     <Window.Background>
         <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
             <GradientStop Color="#1E1E1E" Offset="0"/>

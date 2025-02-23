@@ -6,7 +6,12 @@
              xmlns:local="clr-namespace:AIChatbot.View.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="250" d:DesignWidth="300">
-    <Grid>
+
+    <UserControl.Resources>
+        <ResourceDictionary Source="../Styles/Styles.xaml"/>
+    </UserControl.Resources>
+    
+    <Grid x:Name="grid">
         <Grid.RowDefinitions>
             <RowDefinition Height="24*"/>
             <RowDefinition Height="24*"/>
@@ -17,7 +22,8 @@
 
         <local:UserTextBox x:Name="txtUsername" Grid.Row="0" Width="250" Height="40" Placeholder="Username"/>
         <local:PasswordBox x:Name="txtPassword" Grid.Row="1" Width="250" Height="40" Placeholder="Password"/>
-        <local:Button x:Name="btnLogin" Grid.Row="3" Width="250" Height="40" BtnContent="Login" Cursor="Hand" OnClick="On_BtnLogin_Click"/>
-        <local:Button x:Name="btnRegister" Grid.Row="4" Width="250" Height="40" BtnContent="Register" Cursor="Hand" OnClick="On_BtnRegister_Click"/>
+        <TextBlock x:Name="txtResult" Grid.Row="2" Style="{StaticResource ResultTextStyle}"/>
+        <local:Button x:Name="btnLogin" Grid.Row="3" Width="250" Height="40" BtnContent="Login" OnClick="On_BtnLogin_Click"/>
+        <local:Button x:Name="btnRegister" Grid.Row="4" Width="250" Height="40" BtnContent="Register" OnClick="On_BtnRegister_Click"/>
     </Grid>
 </UserControl>
