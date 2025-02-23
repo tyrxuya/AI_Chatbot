@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AIChatbot.API;
 using AIChatbot.Data;
 using AIChatbot.Data.Models;
 
 namespace AIChatbot.Business
 {
-    public class UserBusiness
+    public class UserBusiness : IUserBusiness
     {
         private ChatbotDbContext dbContext;
 
