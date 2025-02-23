@@ -97,5 +97,13 @@ namespace AIChatbot.View
         {
             messages.Add(message);
         }
+
+        private void txtPrompt_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                btnSend_OnClick(true);
+            }
+        }
     }
 }

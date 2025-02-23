@@ -27,9 +27,9 @@
             <ColumnDefinition Width="15*"/>
         </Grid.ColumnDefinitions>
 
-        <userControls:UserTextBox x:Name="txtPrompt" Grid.Row="1" Grid.Column="1" Height="50" Padding="25, 0" Placeholder="Type here..."/>
-        <userControls:Button x:Name="btnSend" Grid.Row="1" Grid.Column="2" Cursor="Hand" Width="50" Height="50" BtnContent="Send" HorizontalAlignment="Left" OnClick="btnSend_OnClick"/>
-        <userControls:Button x:Name="btnLogout" Grid.Row="0" Grid.Column="0" Cursor="Hand" Height="50" MinWidth="125" MaxWidth="150" Padding="8" BtnContent="Log out" VerticalAlignment="Top" HorizontalAlignment="Left" OnClick="btnLogout_OnClick"/>
+        <userControls:UserTextBox x:Name="txtPrompt" Grid.Row="1" Grid.Column="1" Height="50" Padding="25, 0" Placeholder="Type here..." KeyDown="txtPrompt_KeyDown"/>
+        <userControls:Button x:Name="btnSend" Grid.Row="1" Grid.Column="2" Width="50" Height="50" BtnContent="Send" HorizontalAlignment="Left" OnClick="btnSend_OnClick"/>
+        <userControls:Button x:Name="btnLogout" Grid.Row="0" Grid.Column="0" Height="50" MinWidth="125" MaxWidth="150" BtnContent="Log out" VerticalAlignment="Top" HorizontalAlignment="Left" Padding="8" OnClick="btnLogout_OnClick"/>
         <ScrollViewer x:Name="svBar" CanContentScroll="False" Grid.Row="0" Grid.Column="1" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden">
             <StackPanel x:Name="spChat">
                 
