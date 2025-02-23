@@ -57,6 +57,7 @@ namespace AIChatbot.View
 
         private async void btnSend_OnClick(bool obj)
         {
+            svBar.ScrollToEnd();
             string rawMessage = txtPrompt.txtInput.Text;
             txtPrompt.txtInput.Text = "";
             txtPrompt.tbPlaceholder.Text = "Type here";
@@ -83,13 +84,6 @@ namespace AIChatbot.View
             };
 
             AddMessage(new AssistantChatMessage(sb.ToString()));
-
-            //var chatCompletion = await ChatService.CompleteChatAsync(messages);
-            //string response = chatCompletion.Value.Content[0].Text;
-            //ResponseChatBubble responseBubble = new();
-            //responseBubble.txtResponse.Text = response;
-
-            //AddMessage(new AssistantChatMessage(response));
         }
 
         private void btnLogout_OnClick(bool obj)
