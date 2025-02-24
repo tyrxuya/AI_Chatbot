@@ -39,11 +39,16 @@
             <ColumnDefinition Width="20*" />
         </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.Row="0" Grid.Column="1" Name="tbTitle" VerticalAlignment="Center" 
-                   HorizontalAlignment="Center" FontSize="32" Foreground="White">
-            ByteTalk - AI Chatbot
-        </TextBlock>
+        <TextBlock Grid.Row="0" 
+                   Grid.Column="1" 
+                   Name="tbTitle" 
+                   Text="ByteTalk - AI Chatbot" 
+                   Style="{StaticResource TitleTextBlockStyle}"/>
 
-        <userControls:Login x:Name="login" Grid.Row="1" Grid.Column=" 1" LoginCompleted="Login_LoginCompleted" RegistrationCompleted="login_RegistrationCompleted"/>
+        <userControls:Login x:Name="login" 
+                            Grid.Row="1" 
+                            Grid.Column="1" 
+                            LoginCompleted="Login_LoginCompleted" 
+                            RegistrationCompleted="login_RegistrationCompleted"/>
     </Grid>
 </Window>

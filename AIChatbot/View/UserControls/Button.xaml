@@ -11,30 +11,8 @@
         <ResourceDictionary Source="../Styles/Styles.xaml"/>
     </UserControl.Resources>
     
-    <!--<Grid>
-
-        <Button x:Name="btnClickable" Content="{Binding BtnContent}" Background="#073928" Foreground="White" BorderThickness="2" FontSize="16" Click="btnClickable_Click">
-            <Button.Effect>
-                <DropShadowEffect BlurRadius="10" Opacity="0.4" />
-            </Button.Effect>
-            <Button.Template>
-                <ControlTemplate TargetType="Button">
-                    <Border x:Name="border" Background="{TemplateBinding Background}" CornerRadius="15">
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Border>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" TargetName="border" Value="#09422d"/>
-                            <Setter Property="BorderBrush" TargetName="border" Value="White"/>
-                        </Trigger>
-                        <Trigger Property="IsPressed" Value="True">
-                            <Setter Property="Background" TargetName="border" Value="#063122"/>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Button.Template>
-        </Button>
-    </Grid>-->
-
-    <Button x:Name="btnClickable" Style="{StaticResource ButtonStyle}" Content="{Binding BtnContent}" Click="btnClickable_Click"/>
+    <Button x:Name="btnClickable" 
+            Style="{StaticResource ButtonStyle}" 
+            Content="{Binding BtnContent}" 
+            Click="btnClickable_Click"/>
 </UserControl>

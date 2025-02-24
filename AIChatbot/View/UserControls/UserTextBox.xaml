@@ -13,8 +13,12 @@
 
     <Grid>
         <Border Style="{StaticResource TextBoxBorderStyle}">
-            <TextBox x:Name="txtInput" Style="{StaticResource TextBoxStyle}" TextChanged="txtInput_TextChanged"/>
+            <TextBox x:Name="txtInput" 
+                     Style="{StaticResource TextBoxStyle}" 
+                     TextChanged="txtInput_TextChanged"/>
         </Border>
-        <TextBlock x:Name="tbPlaceholder" Text="{Binding Placeholder}" Style="{StaticResource TextBoxPlaceholderStyle}"/>
+        <TextBlock x:Name="tbPlaceholder" 
+                   Text="{Binding Placeholder}" 
+                   Style="{StaticResource TextBoxPlaceholderStyle}"/>
     </Grid>
 </UserControl>

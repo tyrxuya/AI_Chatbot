@@ -14,7 +14,9 @@
 
     <Grid>
         <Border Style="{StaticResource UserBubbleStyle}">
-            <TextBlock x:Name="txtResponse" Text="{Binding BubbleContent}" Style="{StaticResource BubbleTextStyle}"/>
+            <TextBlock x:Name="txtResponse" 
+                       Text="{Binding BubbleContent}" 
+                       Style="{StaticResource BubbleTextStyle}"/>
         </Border>
     </Grid>
 </UserControl>

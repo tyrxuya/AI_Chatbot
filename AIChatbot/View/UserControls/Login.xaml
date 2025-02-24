@@ -20,10 +20,36 @@
             <RowDefinition Height="24*"/>
         </Grid.RowDefinitions>
 
-        <local:UserTextBox x:Name="txtUsername" Grid.Row="0" Width="250" Height="40" Placeholder="Username"/>
-        <local:PasswordBox x:Name="txtPassword" Grid.Row="1" Width="250" Height="40" Placeholder="Password"/>
-        <TextBlock x:Name="txtResult" Grid.Row="2" Style="{StaticResource ResultTextStyle}"/>
-        <local:Button x:Name="btnLogin" Grid.Row="3" Width="250" Height="40" BtnContent="Login" OnClick="On_BtnLogin_Click"/>
-        <local:Button x:Name="btnRegister" Grid.Row="4" Width="250" Height="40" BtnContent="Register" OnClick="On_BtnRegister_Click"/>
+        <local:UserTextBox x:Name="txtUsername" 
+                           Grid.Row="0" 
+                           Width="250" 
+                           Height="40"
+                           KeyDown="txtUsername_KeyDown"
+                           Placeholder="Username"/>
+        
+        <local:PasswordBox x:Name="txtPassword" 
+                           Grid.Row="1" 
+                           Width="250" 
+                           Height="40"
+                           KeyDown="txtPassword_KeyDown"
+                           Placeholder="Password"/>
+        
+        <TextBlock x:Name="txtResult" 
+                   Grid.Row="2" 
+                   Style="{StaticResource ResultTextStyle}"/>
+        
+        <local:Button x:Name="btnLogin" 
+                      Grid.Row="3" 
+                      Width="250" 
+                      Height="40" 
+                      BtnContent="Login" 
+                      OnClick="On_BtnLogin_Click"/>
+        
+        <local:Button x:Name="btnRegister" 
+                      Grid.Row="4" 
+                      Width="250" 
+                      Height="40" 
+                      BtnContent="Register" 
+                      OnClick="On_BtnRegister_Click"/>
     </Grid>
 </UserControl>
