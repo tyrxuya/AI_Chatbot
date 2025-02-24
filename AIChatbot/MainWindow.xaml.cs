@@ -10,6 +10,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using AIChatbot.API;
 using AIChatbot.Business;
+using AIChatbot.Data;
 using AIChatbot.Data.Models;
 using AIChatbot.View;
 
@@ -20,7 +21,7 @@ namespace AIChatbot
     /// </summary>
     public partial class MainWindow : Window
     {
-        public IUserBusiness userBusiness = new UserBusiness();
+        public IUserBusiness userBusiness = new UserBusiness(new ChatbotDbContext());
 
         public MainWindow()
         {

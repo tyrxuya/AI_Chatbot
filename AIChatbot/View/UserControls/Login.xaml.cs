@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -13,7 +14,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using AIChatbot.API;
 using AIChatbot.Business;
+using AIChatbot.Data;
 using AIChatbot.Data.Models;
 
 namespace AIChatbot.View.UserControls
@@ -23,7 +26,8 @@ namespace AIChatbot.View.UserControls
     /// </summary>
     public partial class Login : UserControl
     {
-        public UserBusiness userBusiness = new();
+        public IUserBusiness userBusiness = new UserBusiness(new ChatbotDbContext());
+        public IPasswordHasher passwordHasher = new PasswordHasher();
 
         public event Action<User> LoginCompleted;
         public event Action<User> RegistrationCompleted;
@@ -43,57 +47,50 @@ namespace AIChatbot.View.UserControls
 
         private void On_BtnLogin_Click(bool obj)
         {
+            if (string.IsNullOrEmpty(txtUsername.txtInput.Text) || string.IsNullOrEmpty(txtPassword.txtInput.Password))
+            {
+                SetFieldsByMode(!RegisterMode);
+                grid.RowDefinitions[2].Height = new(10, GridUnitType.Star);
+                txtResult.Text = "All fields are required.";
+                return;
+            }
+
             if (!RegisterMode)
             {
-                byte[] data = Encoding.ASCII.GetBytes(txtPassword.txtInput.Password);
-                using (var sha256 = SHA256.Create())
+                User user = new()
                 {
-                    byte[] digest = sha256.ComputeHash(data);
-                    string hash = Encoding.ASCII.GetString(digest);
+                    Username = txtUsername.txtInput.Text,
+                    Password = passwordHasher.Hash(txtPassword.txtInput.Password)
+                };
 
-                    User user = new User
-                    {
-                        Username = txtUsername.txtInput.Text,
-                        Password = hash
-                    };
-
-                    if (userBusiness.Find(user))
-                    {
-                        LoginCompleted(user);
-                    }
-                    else
-                    {
-                        SetFieldsByMode(!RegisterMode);
-                        grid.RowDefinitions[2].Height = new(10, GridUnitType.Star);
-                        txtResult.Text = "Wrong username/password!";
-                    }
+                if (!userBusiness.Find(user))
+                {
+                    SetFieldsByMode(!RegisterMode);
+                    grid.RowDefinitions[2].Height = new(10, GridUnitType.Star);
+                    txtResult.Text = "Wrong username/password!";
+                    return;
                 }
+
+                LoginCompleted(user);
             }
 
             else
             {
-                byte[] data = Encoding.ASCII.GetBytes(txtPassword.txtInput.Password);
-                using (var sha256 = SHA256.Create())
+                User user = new()
                 {
-                    byte[] digest = sha256.ComputeHash(data);
-                    string hash = Encoding.ASCII.GetString(digest);
+                    Username = txtUsername.txtInput.Text,
+                    Password = passwordHasher.Hash(txtPassword.txtInput.Password)
+                };
 
-                    User user = new()
-                    {
-                        Username = txtUsername.txtInput.Text,
-                        Password = hash
-                    };
-
-                    if (userBusiness.FindByUsername(user.Username))
-                    {
-                        SetFieldsByMode(!RegisterMode);
-                        grid.RowDefinitions[2].Height = new(10, GridUnitType.Star);
-                        txtResult.Text = "User with such username already exists!";
-                        return;
-                    }
-
-                    RegistrationCompleted(user);
+                if (userBusiness.FindByUsername(user.Username))
+                {
+                    SetFieldsByMode(!RegisterMode);
+                    grid.RowDefinitions[2].Height = new(10, GridUnitType.Star);
+                    txtResult.Text = "User with such username already exists!";
+                    return;
                 }
+
+                RegistrationCompleted(user);
             }
         }
 
@@ -105,28 +102,39 @@ namespace AIChatbot.View.UserControls
 
         public void SetFieldsByMode(bool mode)
         {
+            txtUsername.txtInput.Text = "";
+            txtUsername.tbPlaceholder.Text = "Username";
+            txtPassword.txtInput.Password = "";
+            txtPassword.tbPlaceholder.Text = "Password";
+            txtResult.Text = "";
+            grid.RowDefinitions[2].Height = new(4, GridUnitType.Star);
+
             if (mode)
-            {
-                txtUsername.txtInput.Text = "";
-                txtUsername.tbPlaceholder.Text = "Username";
-                txtPassword.txtInput.Password = "";
-                txtPassword.tbPlaceholder.Text = "Password";
+            {              
                 btnLogin.btnClickable.Content = "Login";
                 btnRegister.btnClickable.Content = "Register";
-                txtResult.Text = "";
-                grid.RowDefinitions[2].Height = new(4, GridUnitType.Star);
             }
 
             else
             {
-                txtUsername.txtInput.Text = "";
-                txtUsername.tbPlaceholder.Text = "Username";
-                txtPassword.txtInput.Password = "";
-                txtPassword.tbPlaceholder.Text = "Password";
                 btnLogin.btnClickable.Content = "Register";
                 btnRegister.btnClickable.Content = "Go back";
-                txtResult.Text = "";
-                grid.RowDefinitions[2].Height = new(4, GridUnitType.Star);
+            }
+        }
+
+        private void txtUsername_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                On_BtnLogin_Click(true);      
+            }
+        }
+
+        private void txtPassword_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                On_BtnLogin_Click(true);
             }
         }
     }

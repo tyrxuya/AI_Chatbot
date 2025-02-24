@@ -27,7 +27,7 @@ namespace AIChatbot.View
     {
         private User activeUser;
         private ChatClient chatService;
-        private List<ChatMessage> messages;
+        private readonly List<ChatMessage> messages;
 
         public User ActiveUser
         {
@@ -50,7 +50,7 @@ namespace AIChatbot.View
         {
             InitializeComponent();
             ActiveUser = user;
-            OpenAIClient client = new(new ApiKeyCredential(APIConstants.OPENAI_API_KEY));
+            OpenAIClient client = new OpenAIClient(new ApiKeyCredential(APIConstants.OPENAI_API_KEY));
             ChatService = client.GetChatClient("gpt-4o");
             messages = new List<ChatMessage>();
         }
