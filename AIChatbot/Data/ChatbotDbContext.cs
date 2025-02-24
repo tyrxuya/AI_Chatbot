@@ -15,9 +15,14 @@ namespace AIChatbot.Data
             Database.EnsureCreated();
         }
 
+        public ChatbotDbContext(DbContextOptions<ChatbotDbContext> options) : base(options) { }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseNpgsql(APIConstants.CONNECTION_STRING);
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseNpgsql(APIConstants.CONNECTION_STRING);
+            }
         }
 
         public DbSet<User> Users { get; set; }
