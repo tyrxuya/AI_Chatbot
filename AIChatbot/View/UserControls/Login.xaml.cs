@@ -1,19 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Security.Policy;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using AIChatbot.API;
 using AIChatbot.Business;
 using AIChatbot.Data;
@@ -26,8 +13,8 @@ namespace AIChatbot.View.UserControls
     /// </summary>
     public partial class Login : UserControl
     {
-        public IUserBusiness userBusiness = new UserBusiness(new ChatbotDbContext());
-        public IPasswordHasher passwordHasher = new PasswordHasher();
+        private IUserBusiness userBusiness = new UserBusiness(new ChatbotDbContext());
+        private IPasswordHasher passwordHasher = new PasswordHasher();
 
         public event Action<User> LoginCompleted;
         public event Action<User> RegistrationCompleted;
@@ -63,7 +50,9 @@ namespace AIChatbot.View.UserControls
                     Password = passwordHasher.Hash(txtPassword.txtInput.Password)
                 };
 
-                if (!userBusiness.Find(user))
+                User? logInUser = userBusiness.Find(user);
+
+                if (logInUser == null)
                 {
                     SetFieldsByMode(!RegisterMode);
                     grid.RowDefinitions[2].Height = new(10, GridUnitType.Star);
@@ -71,7 +60,7 @@ namespace AIChatbot.View.UserControls
                     return;
                 }
 
-                LoginCompleted(user);
+                LoginCompleted(logInUser);
             }
 
             else

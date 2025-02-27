@@ -21,6 +21,7 @@ namespace AIChatbot.View.UserControls
     public partial class Button : UserControl
     {
         public event Action<bool> OnClick;
+
         public Button()
         {
             InitializeComponent();
