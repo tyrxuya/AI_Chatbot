@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AIChatbot.API;
+﻿using AIChatbot.API;
 using AIChatbot.Data;
 using AIChatbot.Data.Models;
 using Microsoft.EntityFrameworkCore;
