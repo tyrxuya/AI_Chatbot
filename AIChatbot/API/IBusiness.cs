@@ -4,12 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AIChatbot.Data.Models;
-using Microsoft.EntityFrameworkCore;
 
 namespace AIChatbot.API
 {
-    public interface IUserBusiness : IBusiness<User>
+    public interface IBusiness<T>
     {
-        public bool FindByUsername(string username);
+        public List<T> GetAll();
+        public void Add(T t);
+        public T? Find(T t);
+        public void Remove(int id);
     }
 }

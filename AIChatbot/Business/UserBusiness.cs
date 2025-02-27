@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AIChatbot.API;
 using AIChatbot.Data;
 using AIChatbot.Data.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace AIChatbot.Business
 {
@@ -29,11 +30,11 @@ namespace AIChatbot.Business
             dbContext.SaveChanges();
         }
 
-        public bool Find(User user)
+        public User? Find(User user)
         {
             return dbContext.Users
                     .Where(u => u.Username == user.Username && u.Password == user.Password)
-                    .Any();
+                    .FirstOrDefault();
         }
 
         public bool FindByUsername(string username)
@@ -41,6 +42,17 @@ namespace AIChatbot.Business
             return dbContext.Users
                     .Where(u => u.Username == username)
                     .Any();
+        }
+
+        public void Remove(int id)
+        {
+            User? user = dbContext.Users.Find(id);
+
+            if (user != null)
+            {
+                dbContext.Users.Remove(user);
+                dbContext.SaveChanges();
+            }
         }
     }
 }
