@@ -1,9 +1,7 @@
-﻿using AIChatbot.API;
-using AIChatbot.Business;
+﻿using AIChatbot.Business;
 using AIChatbot.Data;
 using AIChatbot.Data.Models;
 using Microsoft.EntityFrameworkCore;
-using Moq;
 using Testcontainers.PostgreSql;
 
 namespace AIChatbotTest;
@@ -13,7 +11,7 @@ public class UserTest
 {
     private PostgreSqlContainer _postgresContainer;
     private ChatbotDbContext _dbContext;
-    private IUserBusiness _userBusiness;
+    private UserBusiness _userBusiness;
 
     [OneTimeSetUp]
     public async Task GlobalSetup()
@@ -69,7 +67,7 @@ public class UserTest
 
         User? actualUser = _userBusiness.GetAll().FirstOrDefault(u => u.Username == user.Username);
 
-        Assert.That(_userBusiness.Find(user), Is.True);
+        Assert.That(_userBusiness.Find(user), Is.Not.Null);
         Assert.That(actualUser.Id, Is.EqualTo(user.Id));
         Assert.That(actualUser.Username, Is.EqualTo(user.Username));
         Assert.That(actualUser.Password, Is.EqualTo(user.Password));
@@ -123,9 +121,12 @@ public class UserTest
 
         _userBusiness.Add(user);
 
-        bool exists = _userBusiness.Find(user);
+        User? actualUser = _userBusiness.Find(user);
 
-        Assert.That(exists, Is.True);
+        Assert.That(actualUser, Is.Not.Null);
+        Assert.That(actualUser.Id, Is.EqualTo(user.Id));
+        Assert.That(actualUser.Username, Is.EqualTo(user.Username));
+        Assert.That(actualUser.Password, Is.EqualTo(user.Password));
     }
 
     [Test]
@@ -147,9 +148,9 @@ public class UserTest
 
         _userBusiness.Add(user);
 
-        bool exists = _userBusiness.Find(user1);
+        User? nonexistentUser = _userBusiness.Find(user1);
 
-        Assert.That(exists, Is.False);
+        Assert.That(nonexistentUser, Is.Null);
     }
 
     [Test]
