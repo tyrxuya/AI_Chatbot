@@ -2,6 +2,7 @@
 using AIChatbot.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -10,9 +11,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace AIChatbot.Migrations
 {
     [DbContext(typeof(ChatbotDbContext))]
-    partial class ChatbotDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250226182814_CreatedMessageAndChatroomEntities")]
+    partial class CreatedMessageAndChatroomEntities
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -32,8 +35,8 @@ namespace AIChatbot.Migrations
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("character varying(150)")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)")
                         .HasColumnName("title");
 
                     b.Property<int>("UserId")
@@ -44,7 +47,7 @@ namespace AIChatbot.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("chatrooms");
+                    b.ToTable("chatroom");
                 });
 
             modelBuilder.Entity("AIChatbot.Data.Models.Message", b =>

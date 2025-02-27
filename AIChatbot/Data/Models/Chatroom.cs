@@ -9,22 +9,23 @@ using static System.Reflection.Metadata.BlobBuilder;
 
 namespace AIChatbot.Data.Models
 {
-    [Table("users")]
-    public class User
+    [Table("chatrooms")]
+    public class Chatroom
     {
         [Key]
         [Column("id")]
         public int Id { get; set; }
 
         [Required]
-        [Column("username")]
-        [MaxLength(50)]
-        public string Username { get; set; }
+        [Column("title")]
+        [MaxLength(150)]
+        public string Title { get; set; }
 
         [Required]
-        [Column("password")]
-        public string Password { get; set; }
+        [Column("user_id")]
+        public int UserId { get; set; }
+        public User User { get; set; }
 
-        public ICollection<Chatroom> Chatrooms { set { Chatrooms = value; } }
+        public ICollection<Message> Messages { set { Messages = value; } }
     }
 }
