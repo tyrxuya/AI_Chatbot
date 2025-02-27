@@ -8,8 +8,8 @@
         mc:Ignorable="d"
         Title="Chatroom" 
         Height="720" 
-        Width="1080" 
-        MinWidth="1080" 
+        Width="1200" 
+        MinWidth="1200" 
         MinHeight="720">
 
     <Window.Background>
@@ -26,9 +26,9 @@
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="15*"/>
+            <ColumnDefinition Width="Auto" MinWidth="300"/>
             <ColumnDefinition Width="70*"/>
-            <ColumnDefinition Width="15*"/>
+            <ColumnDefinition Width="13*"/>
         </Grid.ColumnDefinitions>
 
         <userControls:UserTextBox x:Name="txtPrompt" 
@@ -50,26 +50,44 @@
         
         <userControls:Button x:Name="btnLogout" 
                              Grid.Row="0" 
-                             Grid.Column="0" 
+                             Grid.Column="2" 
                              Height="50" 
                              MinWidth="125" 
                              MaxWidth="150" 
                              BtnContent="Log out" 
                              VerticalAlignment="Top" 
-                             HorizontalAlignment="Left" 
+                             HorizontalAlignment="Right" 
                              Padding="8" 
                              OnClick="btnLogout_OnClick"/>
         
-        <ScrollViewer x:Name="svBar" 
+        <ScrollViewer x:Name="svChatBar" 
                       CanContentScroll="False" 
                       Grid.Row="0" 
                       Grid.Column="1" 
                       VerticalScrollBarVisibility="Hidden" 
-                      HorizontalScrollBarVisibility="Hidden">
+                      HorizontalScrollBarVisibility="Hidden"
+                      Padding="20, 0, 0, 0">
             
             <StackPanel x:Name="spChat">
                 
             </StackPanel>
         </ScrollViewer>
+
+        <ScrollViewer x:Name="svChatroomsBar" 
+                      CanContentScroll="False" 
+                      Grid.Row="0" 
+                      Grid.Column="0" 
+                      VerticalScrollBarVisibility="Hidden" 
+                      HorizontalScrollBarVisibility="Hidden"
+                      Background="#252525">
+
+            <StackPanel x:Name="spChatrooms">
+
+            </StackPanel>
+        </ScrollViewer>
+
+        <Grid Grid.Row="1" Grid.Column="0" Background="#252525">
+            <userControls:Button x:Name="btnAddChatroom" BtnContent="Add chatroom" Padding="25" OnClick="btnAddChatroom_OnClick"/>
+        </Grid>
     </Grid>
 </Window>

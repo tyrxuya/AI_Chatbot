@@ -21,20 +21,20 @@ namespace AIChatbot
     /// </summary>
     public partial class MainWindow : Window
     {
-        public IUserBusiness userBusiness = new UserBusiness(new ChatbotDbContext());
+        private IUserBusiness userBusiness = new UserBusiness(new ChatbotDbContext());
 
         public MainWindow()
         {
             InitializeComponent();
         }
 
-        private void Login_LoginCompleted(Data.Models.User obj)
+        private void Login_LoginCompleted(User obj)
         {
             new Chat(obj).Show();
             this.Close();
         }
 
-        private void login_RegistrationCompleted(Data.Models.User obj)
+        private void login_RegistrationCompleted(User obj)
         {
             userBusiness.Add(obj);
             new Chat(obj).Show();
